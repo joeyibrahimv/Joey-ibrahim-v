@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Number - Magic Game</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600;700&family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <main class="game-container">
+        
+        <h1>
+            <i class="fa-solid fa-wand-magic-sparkles"></i>
+            Magic Number
+        </h1>
+        <p class="subtitle">I'm thinking of a number between 1 and 100. Can you guess it?</p>
+
+        <div class="input-group">
+            <input type="number" id="guess-input" placeholder="Enter your guess" min="1" max="100">
+            <button id="guess-btn">
+                <i class="fa-solid fa-paper-plane"></i> Guess
+            </button>
+        </div>
+
+        <div class="feedback-area">
+            <p id="feedback-message">Good luck!</p>
+        </div>
+
+        <div class="results-area">
+            <h3>Previous Guesses:</h3>
+            <ul id="guesses-list">
+                </ul>
+        </div>
+        
+        <button id="play-again-btn" class="hidden">
+            <i class="fa-solid fa-arrows-rotate"></i> Play Again
+        </button>
+
+    </main>
+
+    <button id="mobile-try-now">
+        <i class="fa-solid fa-hand-pointer"></i> Try Now
+    </button>
+    
+    <script src="script.js"></script>
+</body>
+</html>

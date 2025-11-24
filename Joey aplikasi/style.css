@@ -1,0 +1,275 @@
+/* --- Global Styles & Variables --- */
+:root {
+    --primary-color: #4a148c;   /* Deep Purple (Magic Theme) */
+    --secondary-color: #8e24aa; /* Lighter Purple */
+    --accent-color: #fdd835;    /* Gold/Yellow (Magic Sparkle) */
+    --bg-color: #f3e5f5;        /* Light Lavender Background */
+    --white: #ffffff;
+    --text-color: #333;
+    
+    /* Feedback Colors */
+    --correct-color: #4CAF50;
+    --wrong-color: #D32F2F;
+    --info-color: #616161; /* For 'Good luck!' */
+    
+    --font-heading: 'Poppins', sans-serif;
+    --font-body: 'Lato', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-body);
+    line-height: 1.6;
+    color: var(--text-color);
+    /* Background from Unsplash */
+    background: linear-gradient(rgba(243, 229, 245, 0.9), rgba(243, 229, 245, 0.9)), 
+                url('https://images.unsplash.com/photo-1511447333015-45b65e60f6d5?q=80&w=1924&auto=format&fit=crop');
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+    animation: fadeInPage 1s ease-in-out;
+}
+
+/* --- Game Container --- */
+.game-container {
+    background: var(--white);
+    max-width: 450px;
+    width: 100%;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    padding: 2.5rem;
+    text-align: center;
+    /* Animasi slide-in */
+    animation: slideInFromTop 0.7s ease-out forwards;
+}
+
+h1 {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+}
+
+h1 i {
+    color: var(--accent-color);
+    margin-right: 10px;
+    transform: rotate(-15deg);
+}
+
+.subtitle {
+    font-size: 1rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* --- Input Group --- */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 1.5rem;
+}
+
+#guess-input {
+    flex-grow: 1;
+    padding: 12px;
+    font-size: 1.1rem;
+    font-family: var(--font-body);
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    transition: border-color 0.3s ease;
+    /* Remove number input spinners */
+    -moz-appearance: textfield;
+}
+
+#guess-input::-webkit-outer-spin-button,
+#guess-input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+#guess-input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+}
+
+/* --- Buttons --- */
+#guess-btn, #mobile-try-now, #play-again-btn {
+    padding: 12px 20px;
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--white);
+    background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+#guess-btn:hover, #mobile-try-now:hover, #play-again-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(74, 20, 140, 0.3);
+}
+
+#guess-btn i, #mobile-try-now i, #play-again-btn i {
+    margin-right: 8px;
+}
+
+/* Play Again Button styling */
+#play-again-btn {
+    width: 100%;
+    margin-top: 1rem;
+    background: var(--accent-color);
+    color: var(--primary-color);
+}
+
+.hidden {
+    display: none;
+}
+
+/* --- Feedback & Results Area --- */
+.feedback-area {
+    margin-bottom: 1.5rem;
+    min-height: 1.5em;
+}
+
+#feedback-message {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--info-color);
+    transition: color 0.3s ease;
+}
+
+/* Dynamic Feedback Classes */
+#feedback-message.wrong {
+    color: var(--wrong-color);
+    animation: shake 0.5s ease;
+}
+
+#feedback-message.correct {
+    color: var(--correct-color);
+    animation: pulse 1s ease infinite;
+}
+
+.results-area {
+    background: var(--bg-color);
+    border-radius: 8px;
+    padding: 1rem;
+    min-height: 100px;
+    text-align: left;
+}
+
+.results-area h3 {
+    font-family: var(--font-heading);
+    color: var(--primary-color);
+    margin-bottom: 0.5rem;
+    border-bottom: 2px solid var(--secondary-color);
+    padding-bottom: 5px;
+}
+
+#guesses-list {
+    list-style: none;
+    padding-left: 5px;
+    max-height: 120px;
+    overflow-y: auto;
+}
+
+#guesses-list li {
+    font-size: 1rem;
+    color: #555;
+    padding: 4px 0;
+    border-bottom: 1px dashed #ccc;
+}
+#guesses-list li:last-child {
+    border-bottom: none;
+}
+
+/* --- Mobile Sticky Button --- */
+#mobile-try-now {
+    display: none; /* Hidden on desktop */
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    border-radius: 0;
+    z-index: 100;
+    box-shadow: 0 -3px 10px rgba(0,0,0,0.15);
+    animation: slideInFromBottom 0.5s ease-out;
+}
+
+
+/* --- Animations --- */
+@keyframes fadeInPage {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideInFromTop {
+    from { transform: translateY(-30px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideInFromBottom {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* --- Responsive (Mobile Version) --- */
+@media (max-width: 600px) {
+    body {
+        padding: 0;
+        /* Tambahkan padding di bawah agar tidak tertutup sticky button */
+        padding-bottom: 80px; 
+    }
+
+    .game-container {
+        width: 100%;
+        min-height: 100vh;
+        margin: 0;
+        border-radius: 0;
+        box-shadow: none;
+    }
+    
+    .content-wrapper {
+        padding: 1.5rem;
+    }
+
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    #guess-btn {
+        display: none; /* Sembunyikan tombol desktop */
+    }
+
+    #mobile-try-now {
+        display: block; /* Tampilkan tombol mobile */
+    }
+    
+    /* Jika game selesai, sembunyikan tombol mobile */
+    body.game-over #mobile-try-now {
+        display: none;
+    }
+}
